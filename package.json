@@ -1,6 +1,6 @@
 {
   "name": "react-strategy",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "react": "^17.0.1",
@@ -8,6 +8,8 @@
     "react-scripts": "4.0.0"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.1",
     "@testing-library/user-event": "^12.2.2",
@@ -27,6 +29,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.21.5",
     "prettier": "^2.1.2",
+    "semantic-release": "^17.2.4",
     "typescript": "^4.1.2"
   },
   "scripts": {
@@ -34,7 +37,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "commit": "cz"
+    "commit": "cz",
+    "release": "semantic-release --no-ci"
   },
   "eslintConfig": {
     "extends": [
