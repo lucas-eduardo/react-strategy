@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "polished": "^4.0.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.0"
+    "react-icons": "^3.11.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.0",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",
@@ -17,6 +21,9 @@
     "@types/node": "^12.19.6",
     "@types/react": "^16.9.56",
     "@types/react-dom": "^16.9.9",
+    "@types/react-icons": "^3.0.0",
+    "@types/react-router-dom": "^5.1.6",
+    "@types/styled-components": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
     "cz-conventional-changelog": "^3.3.0",
@@ -28,6 +35,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.21.5",
+    "miragejs": "^0.1.41",
     "prettier": "^2.1.2",
     "semantic-release": "^17.2.4",
     "typescript": "^4.1.2"
