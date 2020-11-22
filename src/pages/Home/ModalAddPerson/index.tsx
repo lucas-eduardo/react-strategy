@@ -1,7 +1,9 @@
 import { useState, useCallback, useEffect, FormEvent } from 'react';
 import { MdClose } from 'react-icons/md';
 
-import { Input } from '../../../components/Input';
+import searchAddressService from 'modules/Address/services/SearchAddressService';
+
+import { Input } from 'components/Input';
 
 import { IModalAddPersonProps } from './IModalAddPerson';
 
@@ -56,6 +58,24 @@ const ModalAddPerson = ({ instanceModal }: IModalAddPersonProps) => {
       handleModal,
     ],
   );
+
+  const getAddress = useCallback((cep: string) => {
+    searchAddressService
+      .execute(cep)
+      .then(({ publicPlace, neighborhood, city, state }) => {
+        setPublicPlace(publicPlace);
+        setNeighborhood(neighborhood);
+        setCity(city);
+        setState(state);
+      })
+      .catch(err => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    if (cep.length === 8 || cep.length === 9) {
+      getAddress(cep);
+    }
+  }, [cep, getAddress]);
 
   useEffect(() => {
     setIsCenterContent(true);
