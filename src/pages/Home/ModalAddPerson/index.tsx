@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, FormEvent } from 'react';
 import { MdClose } from 'react-icons/md';
 
 import searchAddressService from 'modules/Address/services/SearchAddressService';
+import userCreateService from 'modules/User/services/UserCreateService';
 
 import { Input } from 'components/Input';
 
@@ -27,21 +28,26 @@ const ModalAddPerson = ({ instanceModal }: IModalAddPersonProps) => {
     (event: FormEvent) => {
       event.preventDefault();
 
-      console.log(
-        cep,
-        city,
-        cpf,
-        dateOfBirth,
-        handleModal,
-        lastName,
-        name,
-        neighborhood,
-        number,
-        publicPlace,
-        state,
-      );
-
-      handleModal();
+      userCreateService
+        .execute({
+          cep,
+          city,
+          cpf,
+          dateOfBirth: new Date(dateOfBirth),
+          lastName,
+          name,
+          neighborhood,
+          number,
+          publicPlace,
+          state,
+        })
+        .then(() => {
+          handleModal();
+        })
+        .catch(err => {
+          console.error(err);
+          alert('Ocorreu algum erro');
+        });
     },
     [
       cep,
