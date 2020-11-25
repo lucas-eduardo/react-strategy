@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 
+import { IUserDto } from 'modules/User/dtos/IUserDto';
+import getUsersService from 'modules/User/services/GetUsersService';
+
 import { Table } from '../../components/Table';
 
 import { Container } from './styles';
@@ -19,12 +22,18 @@ const columns = [
 ];
 
 const User = () => {
-  const [persons, setPersons] = useState([]);
+  const [persons, setPersons] = useState<IUserDto[]>([]);
 
   useEffect(() => {
-    fetch('/api/persons')
-      .then(response => response.json())
-      .then(json => setPersons(json));
+    getUsersService
+      .execute()
+      .then(data => {
+        setPersons(data);
+      })
+      .catch(err => {
+        console.error(err);
+        alert('Ocorreu algum erro');
+      });
   }, []);
 
   return (
