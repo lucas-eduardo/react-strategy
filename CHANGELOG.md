@@ -1,3 +1,11 @@
+# [1.3.0](https://github.com/lucas-eduardo/react-strategy/compare/v1.2.0...v1.3.0) (2020-11-25)
+
+
+### Features
+
+* **user:** service create user ([5cc6bef](https://github.com/lucas-eduardo/react-strategy/commit/5cc6bef0e55e9b83e6d80ac1e74999355c5ed307))
+* **user:** user listing implementation ([58c0bb9](https://github.com/lucas-eduardo/react-strategy/commit/58c0bb962f83b9f82337366f5f1d0a4a13d2b5d0))
+
 # [1.2.0](https://github.com/lucas-eduardo/react-strategy/compare/v1.1.0...v1.2.0) (2020-11-22)
 
 
