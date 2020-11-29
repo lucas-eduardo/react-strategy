@@ -51,6 +51,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "test:coverage": "react-scripts test --coverage --watchAll false",
     "commit": "cz",
     "release": "semantic-release --no-ci"
   },
@@ -64,6 +65,12 @@
     "singleQuote": true,
     "trailingComma": "all",
     "arrowParens": "avoid"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/pages/**/*.tsx",
+      "src/modules/services/*.ts"
+    ]
   },
   "browserslist": {
     "production": [

@@ -1,8 +1,8 @@
 import { useState, useCallback, useEffect, FormEvent } from 'react';
 import { MdClose } from 'react-icons/md';
 
-import searchAddressService from 'modules/Address/services/SearchAddressService';
-import userCreateService from 'modules/User/services/UserCreateService';
+import { searchAddressService } from 'modules/Address/services/searchAddressService';
+import { userCreateService } from 'modules/User/services/userCreateService';
 
 import { Input } from 'components/Input';
 
@@ -28,19 +28,18 @@ const ModalAddPerson = ({ instanceModal }: IModalAddPersonProps) => {
     (event: FormEvent) => {
       event.preventDefault();
 
-      userCreateService
-        .execute({
-          cep,
-          city,
-          cpf,
-          dateOfBirth: new Date(dateOfBirth),
-          lastName,
-          name,
-          neighborhood,
-          number,
-          publicPlace,
-          state,
-        })
+      userCreateService({
+        cep,
+        city,
+        cpf,
+        dateOfBirth: new Date(dateOfBirth),
+        lastName,
+        name,
+        neighborhood,
+        number,
+        publicPlace,
+        state,
+      })
         .then(() => {
           handleModal();
         })
@@ -66,8 +65,7 @@ const ModalAddPerson = ({ instanceModal }: IModalAddPersonProps) => {
   );
 
   const getAddress = useCallback((cep: string) => {
-    searchAddressService
-      .execute(cep)
+    searchAddressService(cep)
       .then(({ publicPlace, neighborhood, city, state }) => {
         setPublicPlace(publicPlace);
         setNeighborhood(neighborhood);
@@ -88,11 +86,15 @@ const ModalAddPerson = ({ instanceModal }: IModalAddPersonProps) => {
   }, [setIsCenterContent]);
 
   return (
-    <Container>
+    <Container data-testid="page-home-modal">
       <Header>
         <h2>Cadastro</h2>
 
-        <button type="button" onClick={handleModal}>
+        <button
+          type="button"
+          data-testid="page-home-modal-close"
+          onClick={handleModal}
+        >
           <MdClose size={36} />
         </button>
       </Header>

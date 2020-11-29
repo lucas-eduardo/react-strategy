@@ -9,8 +9,9 @@ const Table = ({
   isBordered,
   isHovered,
   isSmall,
+  ...props
 }: ITableProps) => (
-  <Container isBordered={isBordered}>
+  <Container isBordered={isBordered} {...props}>
     <WrapperHead isBordered={isBordered} isSmall={isSmall}>
       <tr>
         {columns.map(({ label }, index) => (

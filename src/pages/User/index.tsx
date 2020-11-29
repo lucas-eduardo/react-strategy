@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 
 import { IUserDto } from 'modules/User/dtos/IUserDto';
-import getUsersService from 'modules/User/services/GetUsersService';
+import { getUsersService } from 'modules/User/services/getUsersService';
 
 import { Table } from '../../components/Table';
 
@@ -22,29 +22,41 @@ const columns = [
 ];
 
 const User = () => {
+  const { push } = useHistory();
   const [persons, setPersons] = useState<IUserDto[]>([]);
 
+  const handleNavigateTo = useCallback(
+    (route: string) => {
+      push(route);
+    },
+    [push],
+  );
+
   useEffect(() => {
-    getUsersService
-      .execute()
-      .then(data => {
-        setPersons(data);
-      })
-      .catch(err => {
-        console.error(err);
-        alert('Ocorreu algum erro');
-      });
+    getUsersService().then(data => {
+      setPersons(data);
+    });
   }, []);
 
   return (
-    <Container>
+    <Container data-testid="page-user">
       <header>
-        <Link to="/">
+        <button
+          type="button"
+          onClick={() => handleNavigateTo('/')}
+          data-testid="page-user-back"
+        >
           <MdKeyboardArrowLeft size={60} color="#fff" /> <span>Voltar</span>
-        </Link>
+        </button>
       </header>
 
-      <Table columns={columns} rows={persons} isBordered isHovered />
+      <Table
+        data-testid="page-user-table"
+        columns={columns}
+        rows={persons}
+        isBordered
+        isHovered
+      />
     </Container>
   );
 };

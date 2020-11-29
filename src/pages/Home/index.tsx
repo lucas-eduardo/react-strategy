@@ -19,6 +19,11 @@ const Home = () => {
     [],
   );
 
+  const handleAddPerson = useCallback(() => {
+    modalContent(addUserModal);
+    handleModal();
+  }, []);
+
   const handleNavigateTo = useCallback(
     (route: string) => {
       push(route);
@@ -27,17 +32,16 @@ const Home = () => {
   );
 
   return (
-    <Container>
+    <Container data-testid="page-home">
       <ButtonAction
+        data-testid="page-home-add-person"
         Icon={() => <MdPersonAdd />}
         text="Add Person"
-        callback={() => {
-          modalContent(addUserModal);
-          handleModal();
-        }}
+        callback={handleAddPerson}
       />
 
       <ButtonAction
+        data-testid="page-home-list-persons"
         Icon={() => <MdFormatListBulleted />}
         text="List Persons"
         callback={() => handleNavigateTo('/user')}
